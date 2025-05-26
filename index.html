@@ -1,921 +1,814 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Erase Debt SA - Client Portal</title>
-  
-  <!-- Bootstrap CSS -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-  
-  <!-- Bootstrap Icons -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
-  
-  <style>
-    :root {
-      --primary-color: #2680b3;
-      --primary-dark: #1c6a97;
-      --secondary-color: #3d4f58;
-      --secondary-dark: #2e3c42;
-      --light-color: #f8f9fa;
-      --dark-color: #343a40;
-      --success-color: #28a745;
-      --warning-color: #ffc107;
-      --danger-color: #dc3545;
-      --info-color: #17a2b8;
-    }
-    
-    body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      color: #333;
-      line-height: 1.6;
-    }
-    
-    .header-gradient {
-      background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
-      color: white;
-    }
-    
-    .hero-section {
-      background-image: url('attached_assets/IMG_8999.png');
-      background-size: cover;
-      background-position: center;
-      padding: 100px 0;
-      position: relative;
-    }
-    
-    .hero-section::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: rgba(0, 0, 0, 0.5);
-    }
-    
-    .hero-content {
-      position: relative;
-      z-index: 1;
-    }
-    
-    .btn-primary {
-      background-color: var(--primary-color);
-      border-color: var(--primary-color);
-      transition: all 0.3s ease;
-    }
-    
-    .btn-primary:hover {
-      background-color: var(--primary-dark);
-      border-color: var(--primary-dark);
-      transform: translateY(-2px);
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    }
-    
-    .card {
-      transition: all 0.3s ease;
-    }
-    
-    .card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-    }
-    
-    .result-card {
-      display: none;
-    }
-    
-    .testimonial-card {
-      background-color: #fff;
-      border-radius: 10px;
-      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-      padding: 20px;
-      margin-bottom: 20px;
-      position: relative;
-    }
-    
-    .testimonial-card::before {
-      content: '"';
-      position: absolute;
-      top: 10px;
-      left: 10px;
-      font-size: 60px;
-      color: rgba(0, 0, 0, 0.1);
-      font-family: Georgia, serif;
-    }
-    
-    .client-info {
-      display: flex;
-      align-items: center;
-      margin-top: 15px;
-    }
-    
-    .client-avatar {
-      width: 50px;
-      height: 50px;
-      border-radius: 50%;
-      object-fit: cover;
-      margin-right: 15px;
-    }
-    
-    .feature-box {
-      padding: 20px;
-      border-radius: 10px;
-      background: white;
-      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-      transition: all 0.3s ease;
-    }
-    
-    .feature-box:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-    }
-    
-    .feature-icon {
-      width: 60px;
-      height: 60px;
-      background-color: rgba(38, 128, 179, 0.1);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-bottom: 15px;
-      color: var(--primary-color);
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Erase Debt SA - Professional Debt Resolution Services</title>
+    <meta name="description" content="Transform your financial challenges with Erase Debt SA's professional debt resolution services. Expert debt counselling, payment plans, and credit repair solutions.">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #00668c, #2c3e50);
+            color: white;
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            font-size: clamp(1.2rem, 3vw, 1.8rem);
+            font-weight: bold;
+        }
+
+        .logo img {
+            height: clamp(35px, 8vw, 50px);
+            max-width: 280px;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-menu a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+            font-size: clamp(0.9rem, 2vw, 1rem);
+        }
+
+        .nav-menu a:hover {
+            color: #4ecdc4;
+        }
+
+        .mobile-menu {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+        }
+
+        .mobile-menu span {
+            width: 25px;
+            height: 3px;
+            background: white;
+            margin: 3px 0;
+            transition: 0.3s;
+        }
+
+        .hero {
+            background: linear-gradient(rgba(0, 102, 140, 0.9), rgba(44, 62, 80, 0.9)), url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600"><rect fill="%23f8f9fa" width="1200" height="600"/><circle fill="%23e9ecef" cx="200" cy="150" r="80"/><circle fill="%23dee2e6" cx="800" cy="300" r="120"/><circle fill="%23ced4da" cx="1000" cy="100" r="60"/></svg>');
+            background-size: cover;
+            background-position: center;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            padding: 0 2rem;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .hero h1 {
+            font-size: clamp(2rem, 6vw, 4rem);
+            margin-bottom: 1.5rem;
+            font-weight: 700;
+        }
+
+        .hero p {
+            font-size: clamp(1rem, 3vw, 1.3rem);
+            margin-bottom: 2rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: clamp(0.8rem, 2vw, 1rem) clamp(1.5rem, 4vw, 2rem);
+            background: #4ecdc4;
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+            font-size: clamp(0.9rem, 2vw, 1rem);
+        }
+
+        .btn:hover {
+            background: #45b7b8;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            border: 2px solid white;
+        }
+
+        .btn-secondary:hover {
+            background: white;
+            color: #00668c;
+        }
+
+        .section {
+            padding: clamp(3rem, 8vw, 5rem) 2rem;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: clamp(2rem, 5vw, 2.5rem);
+            margin-bottom: 3rem;
+            color: #00668c;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .stat-card {
+            background: linear-gradient(135deg, #00668c, #2c3e50);
+            color: white;
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transform: translateY(0);
+            transition: transform 0.3s;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .stat-number {
+            font-size: clamp(2rem, 5vw, 3rem);
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            font-size: clamp(1rem, 2vw, 1.1rem);
+            opacity: 0.9;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .service-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: all 0.3s;
+            border-left: 5px solid #4ecdc4;
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+
+        .service-card h3 {
+            color: #00668c;
+            margin-bottom: 1rem;
+            font-size: clamp(1.2rem, 3vw, 1.5rem);
+        }
+
+        .service-card p {
+            margin-bottom: 1rem;
+            font-size: clamp(0.9rem, 2vw, 1rem);
+            line-height: 1.6;
+        }
+
+        .testimonials {
+            background: #f8f9fa;
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .testimonial-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+
+        .testimonial-avatar {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            margin: 0 auto 1rem;
+            object-fit: cover;
+            border: 4px solid #4ecdc4;
+        }
+
+        .testimonial-text {
+            font-style: italic;
+            margin-bottom: 1rem;
+            font-size: clamp(0.9rem, 2vw, 1rem);
+            line-height: 1.6;
+        }
+
+        .testimonial-author {
+            font-weight: bold;
+            color: #00668c;
+        }
+
+        .query-section {
+            background: linear-gradient(135deg, #00668c, #2c3e50);
+            color: white;
+        }
+
+        .query-form {
+            max-width: 600px;
+            margin: 0 auto;
+            background: rgba(255,255,255,0.1);
+            padding: 2rem;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: bold;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 1rem;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            background: rgba(255,255,255,0.9);
+            color: #333;
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .progress-section {
+            background: #f8f9fa;
+        }
+
+        .progress-form {
+            max-width: 500px;
+            margin: 0 auto;
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .footer {
+            background: #2c3e50;
+            color: white;
+            padding: 3rem 2rem 1rem;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 1rem;
+            color: #4ecdc4;
+        }
+
+        .footer-section p,
+        .footer-section a {
+            color: #bdc3c7;
+            text-decoration: none;
+            line-height: 1.8;
+        }
+
+        .footer-section a:hover {
+            color: #4ecdc4;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 1px solid #34495e;
+            color: #95a5a6;
+        }
+
+        .notification {
+            position: fixed;
+            top: 100px;
+            right: 20px;
+            padding: 1rem 1.5rem;
+            border-radius: 8px;
+            color: white;
+            font-weight: bold;
+            z-index: 2000;
+            display: none;
+            max-width: 400px;
+        }
+
+        .notification.success { background: #27ae60; }
+        .notification.error { background: #e74c3c; }
+        .notification.warning { background: #f39c12; }
+
+        @media (max-width: 768px) {
+            .nav-menu {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: #00668c;
+                flex-direction: column;
+                padding: 1rem;
+                gap: 1rem;
+            }
+
+            .nav-menu.active {
+                display: flex;
+            }
+
+            .mobile-menu {
+                display: flex;
+            }
+
+            .hero {
+                height: 100vh;
+                padding-top: 80px;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .testimonials-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+        }
+    </style>
 </head>
 <body>
-  <!-- Header -->
-  <header class="header-gradient py-3">
-    <div class="container">
-      <div class="d-flex align-items-center justify-content-between">
-        <div class="d-flex align-items-center">
-          <img src="attached_assets/IMG_8996.jpeg" alt="Erase Debt SA Logo" class="me-3" height="40">
-          <h1 class="h3 m-0">Erase Debt SA</h1>
+    <header class="header">
+        <div class="nav-container">
+            <div class="logo">
+                <img src="attached_assets/IMG_5019.png" alt="Erase Debt SA">
+            </div>
+            <nav class="nav-menu" id="navMenu">
+                <a href="#home">Home</a>
+                <a href="#services">Services</a>
+                <a href="#progress">Track Progress</a>
+                <a href="#contact">Contact</a>
+                <a href="admin/index.html">Admin</a>
+            </nav>
+            <div class="mobile-menu" onclick="toggleMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
         </div>
-        <nav>
-          <button class="btn btn-outline-light me-2" id="lookupTabBtn">Client Lookup</button>
-          <button class="btn btn-outline-light" id="queryTabBtn">Submit Query</button>
-        </nav>
-      </div>
-    </div>
-  </header>
+    </header>
 
-  <!-- Hero Section -->
-  <section class="hero-section">
-    <div class="container">
-      <div class="hero-content text-center text-white">
-        <h1 class="display-4 fw-bold mb-4">Client Portal</h1>
-        <p class="lead mb-4">Track your service progress and submit queries in one place</p>
-        <div class="d-flex justify-content-center gap-3">
-          <button class="btn btn-light btn-lg" id="heroLookupBtn">
-            <i class="bi bi-search me-2"></i> Track Service
-          </button>
-          <button class="btn btn-outline-light btn-lg" id="heroQueryBtn">
-            <i class="bi bi-chat-dots me-2"></i> Submit Query
-          </button>
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1>Transform Your Financial Future</h1>
+            <p>Professional debt resolution services helping South Africans achieve financial freedom since 2013</p>
+            <div class="cta-buttons">
+                <a href="#contact" class="btn">Submit Your Query</a>
+                <a href="#progress" class="btn btn-secondary">Track Your Progress</a>
+            </div>
         </div>
-      </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- Main Content -->
-  <div class="container py-5">
-    <!-- Tabs -->
-    <div class="mb-4">
-      <ul class="nav nav-tabs">
-        <li class="nav-item">
-          <a class="nav-link active" id="lookup-tab" data-bs-toggle="tab" href="#lookup">Client Lookup</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" id="query-tab" data-bs-toggle="tab" href="#query">Submit Query</a>
-        </li>
-      </ul>
-    </div>
-    
-    <div class="tab-content">
-      <!-- Client Lookup Tab -->
-      <div class="tab-pane fade show active" id="lookup">
-        <div class="row justify-content-center">
-          <div class="col-md-5 d-none d-md-block">
-            <img src="client-lookup.jpg" alt="Track Your Service" class="img-fluid rounded shadow-sm mb-4" style="max-height: 400px; object-fit: cover;">
-            <div class="bg-light p-4 rounded shadow-sm">
-              <h4 class="h5 mb-3"><i class="bi bi-info-circle-fill text-primary me-2"></i> Why Track Your Service?</h4>
-              <ul class="list-unstyled">
-                <li class="mb-2"><i class="bi bi-check-circle-fill text-success me-2"></i> Monitor your payment progress</li>
-                <li class="mb-2"><i class="bi bi-check-circle-fill text-success me-2"></i> View your service details</li>
-                <li class="mb-2"><i class="bi bi-check-circle-fill text-success me-2"></i> Check your remaining balance</li>
-                <li class="mb-2"><i class="bi bi-check-circle-fill text-success me-2"></i> Access important service documents</li>
-              </ul>
-            </div>
-          </div>
-          <div class="col-md-7">
-            <div class="card shadow mb-4 border-0">
-              <div class="card-header bg-white">
-                <h2 class="h4 mb-0">Look Up Your Service</h2>
-              </div>
-              <div class="card-body">
-                <p class="card-text">Enter your South African ID number to view your service details and payment history.</p>
-                <form id="lookupForm">
-                  <div class="mb-3">
-                    <label for="idNumber" class="form-label">South African ID Number</label>
-                    <div class="input-group">
-                      <span class="input-group-text"><i class="bi bi-person-badge"></i></span>
-                      <input type="text" class="form-control" id="idNumber" maxlength="13" pattern="[0-9]{13}" placeholder="13 digit ID number" required>
-                    </div>
-                    <div class="form-text">Your ID number is used to look up your service information.</div>
-                  </div>
-                  <div class="d-grid gap-2">
-                    <button type="submit" class="btn btn-primary btn-lg">
-                      <i class="bi bi-search me-2"></i> Look Up Service
-                    </button>
-                    <button type="button" id="demoButton" class="btn btn-outline-secondary btn-sm">
-                      Try Demo (Test ID: 8804015196086)
-                    </button>
-                  </div>
-                </form>
-              </div>
-            </div>
-            
-            <!-- Error Message (hidden by default) -->
-            <div id="errorMessage" class="alert alert-danger d-none" role="alert">
-              <i class="bi bi-exclamation-triangle-fill me-2"></i>
-              <span id="errorText"></span>
-            </div>
-            
-            <!-- Results Section (hidden by default) -->
-            <div id="resultSection" class="result-card">
-              <!-- Client Header -->
-              <div class="card shadow-sm mb-4">
-                <div class="card-body">
-                  <div class="d-flex justify-content-between align-items-center">
-                    <div>
-                      <h3 id="clientName" class="h5 mb-1"></h3>
-                      <p id="idNumberDisplay" class="text-muted small mb-0"></p>
-                    </div>
-                    <span id="statusBadge" class="badge"></span>
-                  </div>
+    <section class="section">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-number">13,000+</div>
+                    <div class="stat-label">Clients Helped Since 2013</div>
                 </div>
-              </div>
-              
-              <!-- Client Details -->
-              <div class="card shadow-sm mb-4">
-                <div class="card-body">
-                  <h4 class="h5 mb-3">Service Details</h4>
-                  <div class="row g-3 mb-4">
-                    <div class="col-md-6">
-                      <p class="mb-1"><strong>Service Type:</strong></p>
-                      <p id="serviceType" class="mb-0"></p>
-                    </div>
-                    <div class="col-md-6">
-                      <p class="mb-1"><strong>Status:</strong></p>
-                      <p id="applicationStatus" class="mb-0"></p>
-                    </div>
-                    <div class="col-md-6">
-                      <p class="mb-1"><strong>Total Fee:</strong></p>
-                      <p id="totalFee" class="mb-0"></p>
-                    </div>
-                    <div class="col-md-6">
-                      <p class="mb-1"><strong>Amount Paid:</strong></p>
-                      <p id="amountPaid" class="mb-0"></p>
-                    </div>
-                    <div class="col-md-6">
-                      <p class="mb-1"><strong>Remaining:</strong></p>
-                      <p id="remainingAmount" class="mb-0"></p>
-                    </div>
-                  </div>
-                  
-                  <h4 class="h5 mb-3">Payment Progress</h4>
-                  <div class="mb-4">
-                    <div class="progress" style="height: 20px;">
-                      <div id="progressBar" class="progress-bar" role="progressbar" style="width: 0%"></div>
-                    </div>
-                    <p id="progressText" class="text-end mt-1 mb-0">0% complete</p>
-                  </div>
-                  
-                  <h4 class="h5 mb-3">Payment History</h4>
-                  <div id="paymentHistory" class="mb-4">
-                    <!-- Payment history will be populated here -->
-                  </div>
+                <div class="stat-card">
+                    <div class="stat-number">10+</div>
+                    <div class="stat-label">Years of Experience</div>
                 </div>
-              </div>
+                <div class="stat-card">
+                    <div class="stat-number">7</div>
+                    <div class="stat-label">Professional Services</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">R1955</div>
+                    <div class="stat-label">Admin Fee Per Service</div>
+                </div>
             </div>
-          </div>
         </div>
-      </div>
-      
-      <!-- Submit Query Tab -->
-      <div class="tab-pane fade" id="query">
-        <div class="row justify-content-center">
-          <div class="col-md-5 d-none d-md-block">
-            <img src="submit-query.jpg" alt="Submit Your Query" class="img-fluid rounded shadow-sm mb-4" style="max-height: 400px; object-fit: cover;">
-            <div class="bg-light p-4 rounded shadow-sm">
-              <h4 class="h5 mb-3"><i class="bi bi-chat-dots-fill text-primary me-2"></i> Our Support Promise</h4>
-              <ul class="list-unstyled">
-                <li class="mb-2"><i class="bi bi-clock-fill text-success me-2"></i> Quick response times</li>
-                <li class="mb-2"><i class="bi bi-person-fill text-success me-2"></i> Dedicated support specialists</li>
-                <li class="mb-2"><i class="bi bi-envelope-check-fill text-success me-2"></i> Email notifications at every step</li>
-                <li class="mb-2"><i class="bi bi-shield-check-fill text-success me-2"></i> Secure and confidential</li>
-              </ul>
+    </section>
+
+    <section id="services" class="section">
+        <div class="container">
+            <h2 class="section-title">Our Professional Services</h2>
+            <div class="services-grid">
+                <div class="service-card">
+                    <h3>Service 1: DRR C AND D3 STATUS</h3>
+                    <p>Comprehensive debt review and status management for clients under debt review with C and D3 classifications.</p>
+                    <a href="service1.html" class="btn">Learn More</a>
+                </div>
+                <div class="service-card">
+                    <h3>Service 2: D4 Less Than 1 Year</h3>
+                    <p>Specialized assistance for clients who have been under D4 status for less than one year.</p>
+                    <a href="service2.html" class="btn">Learn More</a>
+                </div>
+                <div class="service-card">
+                    <h3>Service 3: D4 Credit Report</h3>
+                    <p>Credit report assistance for clients under D4 status seeking credit information and analysis.</p>
+                    <a href="service3.html" class="btn">Learn More</a>
+                </div>
+                <div class="service-card">
+                    <h3>Service 4: NL/ITC Credit Bureau Advice</h3>
+                    <p>Professional advice and guidance for credit bureau matters involving NL and ITC classifications.</p>
+                    <a href="service4.html" class="btn">Learn More</a>
+                </div>
+                <div class="service-card">
+                    <h3>Service 5: NL/ITC Clearance</h3>
+                    <p>Complete clearance services for NL and ITC credit bureau listings and adverse information.</p>
+                    <a href="service5.html" class="btn">Learn More</a>
+                </div>
+                <div class="service-card">
+                    <h3>Service 6: RN A Status - NL Removals</h3>
+                    <p>Specialized removal services for RN A status classifications and NL credit bureau entries.</p>
+                    <a href="service6.html" class="btn">Learn More</a>
+                </div>
+                <div class="service-card">
+                    <h3>Service 7: RN Other Statuses & ITC Removal</h3>
+                    <p>Comprehensive removal services for various RN statuses and ITC credit bureau clearance.</p>
+                    <a href="service7.html" class="btn">Learn More</a>
+                </div>
             </div>
-          </div>
-          <div class="col-md-7">
-            <div class="card shadow border-0">
-              <div class="card-header bg-white">
-                <h2 class="h4 mb-0">Submit Your Query</h2>
-              </div>
-              <div class="card-body">
-                <p class="card-text mb-4">
-                  Fill in the form below to submit your query. A customer service representative will contact you as soon as possible.
-                  You'll receive an email with a reference number that you can use to track the progress of your query.
-                </p>
-                
-                <form id="queryForm">
-                  <div class="row g-3">
-                    <div class="col-md-6">
-                      <label for="query-idNumber" class="form-label">South African ID Number*</label>
-                      <input type="text" class="form-control" id="query-idNumber" name="idNumber" required maxlength="13" pattern="[0-9]{13}" placeholder="13 digit ID number">
-                    </div>
-                    <div class="col-md-6">
-                      <label for="clientName" class="form-label">Full Name*</label>
-                      <input type="text" class="form-control" id="clientName" name="clientName" required placeholder="Your full name">
-                    </div>
-                    <div class="col-md-6">
-                      <label for="email" class="form-label">Email Address*</label>
-                      <input type="email" class="form-control" id="email" name="email" required placeholder="Your email address">
-                    </div>
-                    <div class="col-md-6">
-                      <label for="phone" class="form-label">Phone Number*</label>
-                      <input type="tel" class="form-control" id="phone" name="phone" required placeholder="Your phone number">
-                    </div>
-                    <div class="col-12">
-                      <label for="subject" class="form-label">Subject*</label>
-                      <input type="text" class="form-control" id="subject" name="subject" required placeholder="Query subject">
-                    </div>
-                    <div class="col-12">
-                      <label for="category" class="form-label">Category</label>
-                      <select class="form-select" id="category" name="category">
+        </div>
+    </section>
+
+    <section class="testimonials section">
+        <div class="container">
+            <h2 class="section-title">What Our Clients Say</h2>
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <img src="attached_assets/IMG_8996.jpeg" alt="Thabo Mthembu" class="testimonial-avatar">
+                    <p class="testimonial-text">"Erase Debt SA helped me clear my credit record completely. Their professional service and attention to detail made all the difference in my financial recovery."</p>
+                    <p class="testimonial-author">- Thabo Mthembu, Johannesburg</p>
+                </div>
+                <div class="testimonial-card">
+                    <img src="attached_assets/IMG_9146.png" alt="Sarah van der Merwe" class="testimonial-avatar">
+                    <p class="testimonial-text">"After years of struggling with debt review, their team guided me through the process with expertise and compassion. I'm now financially free!"</p>
+                    <p class="testimonial-author">- Sarah van der Merwe, Cape Town</p>
+                </div>
+                <div class="testimonial-card">
+                    <img src="attached_assets/64BDEED6-4F13-42DD-B786-86A90F9F43FE.jpeg" alt="Nomsa Dlamini" class="testimonial-avatar">
+                    <p class="testimonial-text">"The team at Erase Debt SA are true professionals. They cleared my credit bureau listings efficiently and kept me informed every step of the way."</p>
+                    <p class="testimonial-author">- Nomsa Dlamini, Durban</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="query-section section">
+        <div class="container">
+            <h2 class="section-title">Submit Your Query</h2>
+            <form class="query-form" id="queryForm">
+                <div class="form-group">
+                    <label for="idNumber">South African ID Number *</label>
+                    <input type="text" id="idNumber" name="idNumber" required maxlength="13" placeholder="Enter your 13-digit ID number">
+                </div>
+                <div class="form-group">
+                    <label for="clientName">Full Name *</label>
+                    <input type="text" id="clientName" name="clientName" required placeholder="Enter your full name">
+                </div>
+                <div class="form-group">
+                    <label for="email">Email Address *</label>
+                    <input type="email" id="email" name="email" required placeholder="Enter your email address">
+                </div>
+                <div class="form-group">
+                    <label for="phone">Phone Number</label>
+                    <input type="tel" id="phone" name="phone" placeholder="Enter your phone number">
+                </div>
+                <div class="form-group">
+                    <label for="subject">Subject *</label>
+                    <input type="text" id="subject" name="subject" required placeholder="Brief description of your query">
+                </div>
+                <div class="form-group">
+                    <label for="category">Service Category</label>
+                    <select id="category" name="category">
                         <option value="general">General Inquiry</option>
-                        <option value="debt_review">Debt Review</option>
-                        <option value="credit_clearance">Credit Clearance</option>
-                        <option value="payment">Payment Query</option>
-                        <option value="technical">Technical Support</option>
-                        <option value="other">Other</option>
-                      </select>
-                    </div>
-                    <div class="col-12">
-                      <label for="message" class="form-label">Message*</label>
-                      <textarea class="form-control" id="message" name="message" rows="5" required placeholder="Please describe your query in detail"></textarea>
-                    </div>
-                    <div class="col-12">
-                      <div class="form-text mb-3">* Required fields</div>
-                      <div class="d-grid">
-                        <button type="submit" class="btn btn-primary">
-                          <i class="bi bi-send me-2"></i> Submit Query
-                        </button>
-                      </div>
-                    </div>
-                  </div>
-                </form>
-                
-                <!-- Success Message (hidden by default) -->
-                <div id="querySuccess" class="alert alert-success mt-4 d-none" role="alert">
-                  <i class="bi bi-check-circle-fill me-2"></i>
-                  <span>Your query has been submitted successfully. A reference number has been sent to your email.</span>
+                        <option value="service1">Service 1: DRR C AND D3 STATUS</option>
+                        <option value="service2">Service 2: D4 Less Than 1 Year</option>
+                        <option value="service3">Service 3: D4 Credit Report</option>
+                        <option value="service4">Service 4: NL/ITC Credit Bureau Advice</option>
+                        <option value="service5">Service 5: NL/ITC Clearance</option>
+                        <option value="service6">Service 6: RN A Status - NL Removals</option>
+                        <option value="service7">Service 7: RN Other Statuses & ITC Removal</option>
+                    </select>
                 </div>
-                
-                <!-- Error Message (hidden by default) -->
-                <div id="queryError" class="alert alert-danger mt-4 d-none" role="alert">
-                  <i class="bi bi-exclamation-triangle-fill me-2"></i>
-                  <span id="queryErrorText"></span>
+                <div class="form-group">
+                    <label for="message">Your Message *</label>
+                    <textarea id="message" name="message" required placeholder="Please provide details about your query or situation"></textarea>
                 </div>
-              </div>
-            </div>
-          </div>
+                <button type="submit" class="btn">Submit Query</button>
+            </form>
         </div>
-      </div>
-    </div>
-    
-    <!-- Testimonials Section -->
-    <section class="py-5 bg-light">
-      <div class="container">
-        <div class="text-center mb-5">
-          <h2 class="fw-bold">Client Success Stories</h2>
-          <p class="text-muted">See how we've helped clients like you regain their financial freedom</p>
-        </div>
-        
-        <div class="row">
-          <div class="col-md-4 mb-4">
-            <div class="testimonial-card">
-              <p class="mb-0">"I was stuck in debt review for years and couldn't get financing for my business. Erase Debt SA helped me clear my debt review status in just 3 months. Now I have access to credit again!"</p>
-              <div class="client-info">
-                <img src="attached_assets/IMG_9064.png" alt="Client" class="client-avatar">
-                <div>
-                  <h5 class="mb-0">Sipho M.</h5>
-                  <small class="text-muted">Durban</small>
-                </div>
-              </div>
-            </div>
-          </div>
-          
-          <div class="col-md-4 mb-4">
-            <div class="testimonial-card">
-              <p class="mb-0">"I had multiple defaults on my credit record that were preventing me from buying a home. Erase Debt SA cleared all the defaults and now my credit score has improved by over 200 points!"</p>
-              <div class="client-info">
-                <img src="attached_assets/IMG_9068.png" alt="Client" class="client-avatar">
-                <div>
-                  <h5 class="mb-0">Nomsa K.</h5>
-                  <small class="text-muted">Johannesburg</small>
-                </div>
-              </div>
-            </div>
-          </div>
-          
-          <div class="col-md-4 mb-4">
-            <div class="testimonial-card">
-              <p class="mb-0">"The Complete Debt Resolution service changed my life. After being blacklisted for years, I now have a clean credit record. The team was professional and kept me updated throughout the process."</p>
-              <div class="client-info">
-                <img src="attached_assets/IMG_9073.png" alt="Client" class="client-avatar">
-                <div>
-                  <h5 class="mb-0">Thabo L.</h5>
-                  <small class="text-muted">Cape Town</small>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
     </section>
-    
-    <!-- Features Section -->
-    <section class="py-5">
-      <div class="container">
-        <div class="text-center mb-5">
-          <h2 class="fw-bold">Why Choose Our Services</h2>
-          <p class="text-muted">We offer comprehensive debt resolution solutions</p>
+
+    <section id="progress" class="progress-section section">
+        <div class="container">
+            <h2 class="section-title">Track Your Progress</h2>
+            <div class="progress-form">
+                <div class="form-group">
+                    <label for="trackingId">Enter Your ID Number or Reference Number</label>
+                    <input type="text" id="trackingId" name="trackingId" placeholder="Enter your tracking information">
+                </div>
+                <button onclick="trackProgress()" class="btn">Track Progress</button>
+                <div id="progressResults" style="margin-top: 2rem; display: none;">
+                    <h3>Progress Information</h3>
+                    <div id="progressContent"></div>
+                </div>
+            </div>
         </div>
-        
-        <div class="row g-4">
-          <div class="col-md-4">
-            <div class="feature-box text-center">
-              <div class="feature-icon mx-auto">
-                <i class="bi bi-shield-check fs-4"></i>
-              </div>
-              <h4 class="h5 mb-3">Debt Review Removal</h4>
-              <p class="text-muted mb-0">We help you remove your debt review status through legal channels, restoring your credit worthiness.</p>
-            </div>
-          </div>
-          
-          <div class="col-md-4">
-            <div class="feature-box text-center">
-              <div class="feature-icon mx-auto">
-                <i class="bi bi-file-earmark-check fs-4"></i>
-              </div>
-              <h4 class="h5 mb-3">Default Clearance</h4>
-              <p class="text-muted mb-0">Clear defaults and adverse listings from your credit bureau records to improve your credit score.</p>
-            </div>
-          </div>
-          
-          <div class="col-md-4">
-            <div class="feature-box text-center">
-              <div class="feature-icon mx-auto">
-                <i class="bi bi-graph-up-arrow fs-4"></i>
-              </div>
-              <h4 class="h5 mb-3">Credit Rebuilding</h4>
-              <p class="text-muted mb-0">Get expert guidance on rebuilding your credit score after debt review or defaults have been cleared.</p>
-            </div>
-          </div>
-        </div>
-      </div>
     </section>
-  </div>
 
-  <!-- Footer -->
-  <footer class="bg-dark text-white py-5">
-    <div class="container">
-      <div class="row g-4">
-        <div class="col-lg-4 col-md-6">
-          <div class="d-flex align-items-center mb-3">
-            <img src="attached_assets/IMG_8996.jpeg" alt="Erase Debt SA Logo" class="me-3" height="40">
-            <h5 class="mb-0">Erase Debt SA</h5>
-          </div>
-          <p class="mb-4">Helping South Africans regain their financial freedom through expert debt resolution services.</p>
-          <div class="d-flex gap-3">
-            <a href="#" class="text-white"><i class="bi bi-facebook fs-5"></i></a>
-            <a href="#" class="text-white"><i class="bi bi-twitter fs-5"></i></a>
-            <a href="#" class="text-white"><i class="bi bi-instagram fs-5"></i></a>
-            <a href="#" class="text-white"><i class="bi bi-linkedin fs-5"></i></a>
-          </div>
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Contact Information</h3>
+                <p>📞 031 500 2220</p>
+                <p>📞 031 109 5560</p>
+                <p>📧 queries@erasedebtsa.co.za</p>
+                <p>📧 support@erasedebtsa.net</p>
+            </div>
+            <div class="footer-section">
+                <h3>Our Services</h3>
+                <p><a href="service1.html">DRR C AND D3 STATUS</a></p>
+                <p><a href="service2.html">D4 Less Than 1 Year</a></p>
+                <p><a href="service3.html">D4 Credit Report</a></p>
+                <p><a href="service4.html">NL/ITC Credit Bureau Advice</a></p>
+            </div>
+            <div class="footer-section">
+                <h3>More Services</h3>
+                <p><a href="service5.html">NL/ITC Clearance</a></p>
+                <p><a href="service6.html">RN A Status - NL Removals</a></p>
+                <p><a href="service7.html">RN Other Statuses & ITC Removal</a></p>
+                <p><a href="admin/index.html">Admin Access</a></p>
+            </div>
+            <div class="footer-section">
+                <h3>Professional Excellence</h3>
+                <p>Serving South African clients since 2013</p>
+                <p>Over 13,000 clients helped</p>
+                <p>Professional debt resolution specialists</p>
+                <p>🌐 www.erasedebtsa.net</p>
+            </div>
         </div>
-        
-        <div class="col-lg-2 col-md-6">
-          <h5 class="mb-3">Services</h5>
-          <ul class="list-unstyled">
-            <li class="mb-2"><a href="#" class="text-white text-decoration-none">Debt Review Removal</a></li>
-            <li class="mb-2"><a href="#" class="text-white text-decoration-none">Default Clearance</a></li>
-            <li class="mb-2"><a href="#" class="text-white text-decoration-none">ITC Clearance</a></li>
-            <li class="mb-2"><a href="#" class="text-white text-decoration-none">Name Removal</a></li>
-            <li class="mb-2"><a href="#" class="text-white text-decoration-none">Complete Resolution</a></li>
-          </ul>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Erase Debt SA. All rights reserved. Professional debt resolution services.</p>
         </div>
-        
-        <div class="col-lg-2 col-md-6">
-          <h5 class="mb-3">Quick Links</h5>
-          <ul class="list-unstyled">
-            <li class="mb-2"><a href="#" class="text-white text-decoration-none">Home</a></li>
-            <li class="mb-2"><a href="#" class="text-white text-decoration-none">About Us</a></li>
-            <li class="mb-2"><a href="#" class="text-white text-decoration-none">Services</a></li>
-            <li class="mb-2"><a href="#" class="text-white text-decoration-none">Client Portal</a></li>
-            <li class="mb-2"><a href="#" class="text-white text-decoration-none">Contact Us</a></li>
-          </ul>
-        </div>
-        
-        <div class="col-lg-4 col-md-6">
-          <h5 class="mb-3">Contact Information</h5>
-          <ul class="list-unstyled">
-            <li class="mb-2 d-flex align-items-center">
-              <i class="bi bi-geo-alt-fill me-2"></i>
-              <span>Durban, South Africa</span>
-            </li>
-            <li class="mb-2 d-flex align-items-center">
-              <i class="bi bi-envelope-fill me-2"></i>
-              <span>support@erasedebtsa.net</span>
-            </li>
-            <li class="mb-2 d-flex align-items-center">
-              <i class="bi bi-telephone-fill me-2"></i>
-              <span>+27 XX XXX XXXX</span>
-            </li>
-            <li class="mb-2 d-flex align-items-center">
-              <i class="bi bi-clock-fill me-2"></i>
-              <span>Mon-Fri: 8:00 AM - 5:00 PM</span>
-            </li>
-          </ul>
-        </div>
-      </div>
-      
-      <div class="border-top border-secondary mt-4 pt-4 text-center">
-        <p class="mb-0">&copy; 2025 Erase Debt SA. All rights reserved.</p>
-        <div class="mt-2">
-          <a href="#" class="text-white text-decoration-none mx-2">Terms of Service</a>
-          <a href="#" class="text-white text-decoration-none mx-2">Privacy Policy</a>
-          <a href="#" class="text-white text-decoration-none mx-2">Cookie Policy</a>
-        </div>
-      </div>
-    </div>
-  </footer>
+    </footer>
 
-  <!-- Bootstrap JS -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-  
-  <!-- Google Sheets API URL - update this with your Google Apps Script web app URL -->
-  <script>
-    // Configuration
-    const GOOGLE_SHEETS_URL = 'https://script.google.com/macros/s/AKfycbzVrWY7RaWxMK9yJ6e0qLGN7or0JYm6Uq5QhGceLao0Js2nNk65pmvw1oYI8dLmunlodA/exec';
-    const API_KEY = 'edsa-secure-myown'; // Your API key
-    
-    document.addEventListener('DOMContentLoaded', function() {
-      // Tab navigation
-      const lookupTabBtn = document.getElementById('lookupTabBtn');
-      const queryTabBtn = document.getElementById('queryTabBtn');
-      const lookupTab = document.getElementById('lookup-tab');
-      const queryTab = document.getElementById('query-tab');
-      
-      if (lookupTabBtn) {
-        lookupTabBtn.addEventListener('click', function() {
-          lookupTab.click();
+    <div id="notification" class="notification"></div>
+
+    <script>
+        // Google Apps Script URL
+        const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyWnIg60EKMsVQr2nnDJF5sd92Ki4p9ga5nZTZGTKqhxlLw7XHj2ptjOfBN4vzAkz5N4g/exec';
+
+        // Mobile menu toggle
+        function toggleMenu() {
+            const navMenu = document.getElementById('navMenu');
+            navMenu.classList.toggle('active');
+        }
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
         });
-      }
-      
-      if (queryTabBtn) {
-        queryTabBtn.addEventListener('click', function() {
-          queryTab.click();
-        });
-      }
-      
-      // Client lookup form
-      const lookupForm = document.getElementById('lookupForm');
-      const idNumberInput = document.getElementById('idNumber');
-      const demoButton = document.getElementById('demoButton');
-      const errorMessage = document.getElementById('errorMessage');
-      const errorText = document.getElementById('errorText');
-      const resultSection = document.getElementById('resultSection');
-      
-      // Demo button functionality
-      if (demoButton && idNumberInput) {
-        demoButton.addEventListener('click', function() {
-          idNumberInput.value = '8804015196086';
-          lookupForm.dispatchEvent(new Event('submit'));
-        });
-      }
-      
-      // Lookup form submission
-      if (lookupForm) {
-        lookupForm.addEventListener('submit', async function(e) {
-          e.preventDefault();
-          
-          const idNumber = idNumberInput.value.trim();
-          
-          // Validate ID number
-          if (!idNumber) {
-            showError('Please enter your ID number');
-            return;
-          }
-          
-          if (!/^\d{13}$/.test(idNumber)) {
-            showError('South African ID number must be 13 digits');
-            return;
-          }
-          
-          // Show loading state
-          const submitBtn = lookupForm.querySelector('button[type="submit"]');
-          const originalBtnText = submitBtn.innerHTML;
-          submitBtn.disabled = true;
-          submitBtn.innerHTML = '<span class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span> Loading...';
-          
-          // Hide any previous error
-          hideError();
-          
-          try {
-            // Call the Google Sheets API directly (JSONP to avoid CORS issues)
-            const url = `${GOOGLE_SHEETS_URL}?apiKey=${API_KEY}&action=getClient&idNumber=${idNumber}&callback=handleClientData`;
+
+        // Query form submission
+        document.getElementById('queryForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
             
-            // Create a script element to handle JSONP
-            const script = document.createElement('script');
-            script.src = url;
-            document.body.appendChild(script);
+            const formData = new FormData(this);
+            const data = Object.fromEntries(formData);
             
-            // Define the callback function
-            window.handleClientData = function(data) {
-              // Reset button state
-              submitBtn.disabled = false;
-              submitBtn.innerHTML = originalBtnText;
-              
-              // Remove the script element
-              document.body.removeChild(script);
-              
-              if (!data.success || !data.client) {
-                showError(data.message || 'Client not found. Please check your ID number and try again.');
+            // Validate required fields
+            if (!data.idNumber || !data.clientName || !data.email || !data.subject || !data.message) {
+                showNotification('Please fill in all required fields', 'error');
                 return;
-              }
-              
-              // Display client data
-              displayClientData(data.client);
-            };
-            
-            // Handle errors
-            script.onerror = function() {
-              // Reset button state
-              submitBtn.disabled = false;
-              submitBtn.innerHTML = originalBtnText;
-              
-              showError('Failed to connect to the server. Please try again later.');
-            };
-          } catch (error) {
-            // Reset button state
-            submitBtn.disabled = false;
-            submitBtn.innerHTML = originalBtnText;
-            
-            console.error('Error fetching client data:', error);
-            showError('An error occurred. Please try again later.');
-          }
-        });
-      }
-      
-      // Query form submission
-      const queryForm = document.getElementById('queryForm');
-      const querySuccess = document.getElementById('querySuccess');
-      const queryError = document.getElementById('queryError');
-      const queryErrorText = document.getElementById('queryErrorText');
-      
-      if (queryForm) {
-        queryForm.addEventListener('submit', async function(e) {
-          e.preventDefault();
-          
-          // Get form data
-          const formData = {
-            idNumber: document.getElementById('query-idNumber').value.trim(),
-            clientName: document.getElementById('clientName').value.trim(),
-            email: document.getElementById('email').value.trim(),
-            phone: document.getElementById('phone').value.trim(),
-            subject: document.getElementById('subject').value.trim(),
-            message: document.getElementById('message').value.trim(),
-            category: document.getElementById('category').value
-          };
-          
-          // Validate required fields
-          if (!formData.idNumber || !formData.clientName || !formData.email || !formData.subject || !formData.message) {
-            showQueryError('Please fill in all required fields');
-            return;
-          }
-          
-          // Validate ID number
-          if (!/^\d{13}$/.test(formData.idNumber)) {
-            showQueryError('South African ID number must be 13 digits');
-            return;
-          }
-          
-          // Show loading state
-          const submitBtn = queryForm.querySelector('button[type="submit"]');
-          const originalBtnText = submitBtn.innerHTML;
-          submitBtn.disabled = true;
-          submitBtn.innerHTML = '<span class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span> Submitting...';
-          
-          // Hide any previous messages
-          hideQueryMessages();
-          
-          // For this demo, we'll directly call the Google Sheets API to simulate saving the query
-          // In a real implementation, you would post to your server API endpoint
-          const url = `${GOOGLE_SHEETS_URL}?apiKey=${API_KEY}&action=submitQuery&callback=handleQuerySubmit`;
-          
-          // Create a script element to handle JSONP
-          const script = document.createElement('script');
-          script.src = url;
-          document.body.appendChild(script);
-          
-          // Define the callback function
-          window.handleQuerySubmit = function(data) {
-            // Reset button state
-            submitBtn.disabled = false;
-            submitBtn.innerHTML = originalBtnText;
-            
-            // Remove the script element
-            document.body.removeChild(script);
-            
-            if (!data.success) {
-              showQueryError(data.message || 'Failed to submit query. Please try again later.');
-              return;
             }
             
-            // Show success message
-            showQuerySuccess();
-            
-            // Reset form
-            queryForm.reset();
-          };
-          
-          // Handle errors
-          script.onerror = function() {
-            // Reset button state
-            submitBtn.disabled = false;
-            submitBtn.innerHTML = originalBtnText;
-            
-            showQueryError('Failed to connect to the server. Please try again later.');
-          };
-        });
-      }
-      
-      // Helper function to show error
-      function showError(message) {
-        if (errorMessage && errorText) {
-          errorText.textContent = message;
-          errorMessage.classList.remove('d-none');
-        }
-        
-        if (resultSection) {
-          resultSection.style.display = 'none';
-        }
-      }
-      
-      // Helper function to hide error
-      function hideError() {
-        if (errorMessage) {
-          errorMessage.classList.add('d-none');
-        }
-      }
-      
-      // Helper function to show query error
-      function showQueryError(message) {
-        if (queryError && queryErrorText) {
-          queryErrorText.textContent = message;
-          queryError.classList.remove('d-none');
-        }
-        
-        if (querySuccess) {
-          querySuccess.classList.add('d-none');
-        }
-      }
-      
-      // Helper function to show query success
-      function showQuerySuccess() {
-        if (querySuccess) {
-          querySuccess.classList.remove('d-none');
-        }
-        
-        if (queryError) {
-          queryError.classList.add('d-none');
-        }
-      }
-      
-      // Helper function to hide query messages
-      function hideQueryMessages() {
-        if (querySuccess) {
-          querySuccess.classList.add('d-none');
-        }
-        
-        if (queryError) {
-          queryError.classList.add('d-none');
-        }
-      }
-      
-      // Helper function to display client data
-      function displayClientData(client) {
-        if (!client) return;
-        
-        // Set client info
-        document.getElementById('clientName').textContent = client.fullName;
-        document.getElementById('idNumberDisplay').textContent = `ID: ${client.idNumber}`;
-        
-        // Set status badge
-        const statusBadge = document.getElementById('statusBadge');
-        statusBadge.textContent = client.applicationStatus;
-        
-        // Set badge color based on status
-        statusBadge.className = 'badge';
-        if (client.applicationStatus === 'Active') {
-          statusBadge.classList.add('bg-success');
-        } else if (client.applicationStatus === 'Paused') {
-          statusBadge.classList.add('bg-warning', 'text-dark');
-        } else if (client.applicationStatus === 'Completed') {
-          statusBadge.classList.add('bg-info');
-        } else {
-          statusBadge.classList.add('bg-secondary');
-        }
-        
-        // Set service details
-        document.getElementById('serviceType').textContent = client.serviceName || `SERVICE ${client.serviceType}`;
-        document.getElementById('applicationStatus').textContent = client.applicationStatus;
-        document.getElementById('totalFee').textContent = `R${client.totalServiceFee}`;
-        document.getElementById('amountPaid').textContent = `R${client.totalPaid || 0}`;
-        document.getElementById('remainingAmount').textContent = `R${client.remainingAmount || client.totalServiceFee}`;
-        
-        // Set progress bar
-        const progressBar = document.getElementById('progressBar');
-        const progressText = document.getElementById('progressText');
-        const progress = client.progress || 0;
-        
-        progressBar.style.width = `${progress}%`;
-        progressBar.setAttribute('aria-valuenow', progress);
-        progressText.textContent = `${progress}% complete`;
-        
-        // Set payment history
-        const paymentHistory = document.getElementById('paymentHistory');
-        paymentHistory.innerHTML = '';
-        
-        if (client.payments && client.payments.length > 0) {
-          const table = document.createElement('table');
-          table.className = 'table table-striped';
-          
-          const thead = document.createElement('thead');
-          thead.innerHTML = `
-            <tr>
-              <th>Payment</th>
-              <th>Status</th>
-            </tr>
-          `;
-          
-          const tbody = document.createElement('tbody');
-          
-          client.payments.forEach((payment, index) => {
-            const tr = document.createElement('tr');
-            
-            const tdPayment = document.createElement('td');
-            tdPayment.textContent = `Payment ${index + 1}`;
-            
-            const tdStatus = document.createElement('td');
-            
-            if (payment === null) {
-              const badge = document.createElement('span');
-              badge.className = 'badge bg-secondary';
-              badge.textContent = 'Not due yet';
-              tdStatus.appendChild(badge);
-            } else if (payment === 0) {
-              const badge = document.createElement('span');
-              badge.className = 'badge bg-danger';
-              badge.textContent = 'Failed';
-              tdStatus.appendChild(badge);
-            } else {
-              const badge = document.createElement('span');
-              badge.className = 'badge bg-success';
-              badge.textContent = `R${payment}`;
-              tdStatus.appendChild(badge);
+            // Validate South African ID number
+            if (!/^\d{13}$/.test(data.idNumber)) {
+                showNotification('Please enter a valid 13-digit South African ID number', 'error');
+                return;
             }
             
-            tr.appendChild(tdPayment);
-            tr.appendChild(tdStatus);
-            tbody.appendChild(tr);
-          });
-          
-          table.appendChild(thead);
-          table.appendChild(tbody);
-          paymentHistory.appendChild(table);
-        } else {
-          paymentHistory.innerHTML = '<p class="text-muted">No payment history available</p>';
+            try {
+                showNotification('Submitting your query...', 'warning');
+                
+                const response = await fetch(GOOGLE_SCRIPT_URL, {
+                    method: 'POST',
+                    body: JSON.stringify({
+                        action: 'submitQuery',
+                        ...data
+                    })
+                });
+                
+                const result = await response.json();
+                
+                if (result.success) {
+                    showNotification(`Query submitted successfully! Reference: ${result.referenceNumber}`, 'success');
+                    this.reset();
+                } else {
+                    showNotification(result.message || 'Failed to submit query', 'error');
+                }
+            } catch (error) {
+                console.error('Error submitting query:', error);
+                showNotification('Failed to submit query. Please try again.', 'error');
+            }
+        });
+
+        // Track progress function
+        async function trackProgress() {
+            const trackingId = document.getElementById('trackingId').value.trim();
+            
+            if (!trackingId) {
+                showNotification('Please enter your ID number or reference number', 'error');
+                return;
+            }
+            
+            try {
+                showNotification('Looking up your information...', 'warning');
+                
+                // Try tracking by reference number first
+                let response = await fetch(`${GOOGLE_SCRIPT_URL}?action=trackQuery&reference=${trackingId}`);
+                let result = await response.json();
+                
+                // If no results, try by ID number
+                if (!result.success || !result.queries || result.queries.length === 0) {
+                    response = await fetch(`${GOOGLE_SCRIPT_URL}?action=getClientProgress&idNumber=${trackingId}`);
+                    result = await response.json();
+                }
+                
+                const progressResults = document.getElementById('progressResults');
+                const progressContent = document.getElementById('progressContent');
+                
+                if (result.success && (result.queries || result.client)) {
+                    let content = '';
+                    
+                    if (result.queries && result.queries.length > 0) {
+                        content += '<h4>Your Queries:</h4>';
+                        result.queries.forEach(query => {
+                            content += `
+                                <div style="background: white; padding: 1rem; margin: 1rem 0; border-radius: 8px; border-left: 4px solid #4ecdc4;">
+                                    <p><strong>Reference:</strong> ${query.referenceNumber}</p>
+                                    <p><strong>Subject:</strong> ${query.subject}</p>
+                                    <p><strong>Status:</strong> ${query.status}</p>
+                                    <p><strong>Date:</strong> ${new Date(query.dateSubmitted).toLocaleDateString()}</p>
+                                </div>
+                            `;
+                        });
+                    }
+                    
+                    if (result.client) {
+                        content += '<h4>Your Account Information:</h4>';
+                        content += `
+                            <div style="background: white; padding: 1rem; margin: 1rem 0; border-radius: 8px; border-left: 4px solid #00668c;">
+                                <p><strong>Client Name:</strong> ${result.client.clientName}</p>
+                                <p><strong>Service Type:</strong> ${result.client.serviceType || 'Not specified'}</p>
+                                <p><strong>Payment Progress:</strong> ${result.client.paymentProgress || 0}%</p>
+                                <p><strong>Total Paid:</strong> R${result.client.totalPaid || 0}</p>
+                            </div>
+                        `;
+                    }
+                    
+                    progressContent.innerHTML = content;
+                    progressResults.style.display = 'block';
+                    showNotification('Information found!', 'success');
+                } else {
+                    progressContent.innerHTML = '<p>No information found for the provided ID or reference number.</p>';
+                    progressResults.style.display = 'block';
+                    showNotification('No information found', 'warning');
+                }
+            } catch (error) {
+                console.error('Error tracking progress:', error);
+                showNotification('Failed to track progress. Please try again.', 'error');
+            }
         }
-        
-        // Show result section
-        resultSection.style.display = 'block';
-      }
-    });
-  </script>
+
+        // Show notification function
+        function showNotification(message, type = 'success') {
+            const notification = document.getElementById('notification');
+            notification.textContent = message;
+            notification.className = `notification ${type}`;
+            notification.style.display = 'block';
+            
+            setTimeout(() => {
+                notification.style.display = 'none';
+            }, 5000);
+        }
+
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', function(e) {
+            const navMenu = document.getElementById('navMenu');
+            const mobileMenu = document.querySelector('.mobile-menu');
+            
+            if (!navMenu.contains(e.target) && !mobileMenu.contains(e.target)) {
+                navMenu.classList.remove('active');
+            }
+        });
+    </script>
 </body>
 </html>
