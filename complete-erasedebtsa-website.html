@@ -1,0 +1,675 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Erase Debt SA - Your Past Debt Cleared, Creating A Better Future</title>
+    <meta name="description" content="Professional debt management services in South Africa. Clear your past debt and create a better financial future with Erase Debt SA.">
+    
+    <!-- Open Graph tags -->
+    <meta property="og:title" content="Erase Debt SA - Professional Debt Management Services">
+    <meta property="og:description" content="Clear your past debt and create a better financial future with our professional debt management services.">
+    <meta property="og:type" content="website">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f8f9fa;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, #1e40af 0%, #3b82f6 100%);
+            color: white;
+            padding: 1rem 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .logo-section {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo {
+            width: 60px;
+            height: 60px;
+            background: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: #1e40af;
+            font-size: 20px;
+        }
+
+        .company-info h1 {
+            font-size: 24px;
+            margin-bottom: 5px;
+        }
+
+        .tagline {
+            font-size: 14px;
+            opacity: 0.9;
+            font-style: italic;
+        }
+
+        .contact-info {
+            text-align: right;
+            font-size: 14px;
+        }
+
+        /* Navigation */
+        nav {
+            background: #1e3a8a;
+            padding: 1rem 0;
+        }
+
+        .nav-links {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        .nav-links a:hover {
+            background-color: rgba(255,255,255,0.1);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #3b82f6 0%, #1e40af 100%);
+            color: white;
+            padding: 60px 0;
+            text-align: center;
+        }
+
+        .hero h2 {
+            font-size: 36px;
+            margin-bottom: 20px;
+        }
+
+        .hero p {
+            font-size: 18px;
+            margin-bottom: 30px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 12px 30px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+        }
+
+        .btn-primary {
+            background: #22c55e;
+            color: white;
+        }
+
+        .btn-secondary {
+            background: white;
+            color: #1e40af;
+            border: 2px solid white;
+        }
+
+        /* Services Section */
+        .services {
+            padding: 60px 0;
+            background: white;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .section-title h2 {
+            font-size: 32px;
+            color: #1e40af;
+            margin-bottom: 15px;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .service-card {
+            background: #f8fafc;
+            padding: 30px;
+            border-radius: 10px;
+            border-left: 4px solid #3b82f6;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            transition: transform 0.3s;
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .service-card h3 {
+            color: #1e40af;
+            margin-bottom: 15px;
+            font-size: 20px;
+        }
+
+        .service-card p {
+            margin-bottom: 15px;
+            color: #64748b;
+        }
+
+        .price {
+            font-weight: bold;
+            color: #059669;
+            font-size: 18px;
+        }
+
+        /* Client Portal Section */
+        .portal {
+            padding: 60px 0;
+            background: #f1f5f9;
+        }
+
+        .portal-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            align-items: center;
+        }
+
+        .portal-info h2 {
+            color: #1e40af;
+            margin-bottom: 20px;
+            font-size: 28px;
+        }
+
+        .portal-info ul {
+            list-style: none;
+            margin: 20px 0;
+        }
+
+        .portal-info li {
+            padding: 10px 0;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .portal-info li:before {
+            content: "✓";
+            color: #22c55e;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+
+        .login-form {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            color: #374151;
+            font-weight: 500;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #d1d5db;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: #3b82f6;
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+        }
+
+        /* Contact Section */
+        .contact {
+            padding: 60px 0;
+            background: white;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            text-align: center;
+        }
+
+        .contact-item {
+            padding: 20px;
+        }
+
+        .contact-item h3 {
+            color: #1e40af;
+            margin-bottom: 15px;
+        }
+
+        .contact-item p {
+            color: #64748b;
+        }
+
+        /* Footer */
+        footer {
+            background: #1e40af;
+            color: white;
+            padding: 40px 0 20px;
+            text-align: center;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-bottom: 30px;
+            text-align: left;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 15px;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            padding: 5px 0;
+        }
+
+        .footer-section ul li a {
+            color: #bfdbfe;
+            text-decoration: none;
+        }
+
+        .footer-section ul li a:hover {
+            color: white;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid #3b82f6;
+            padding-top: 20px;
+            text-align: center;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 20px;
+                text-align: center;
+            }
+
+            .contact-info {
+                text-align: center;
+            }
+
+            .nav-links {
+                gap: 15px;
+            }
+
+            .hero h2 {
+                font-size: 28px;
+            }
+
+            .hero p {
+                font-size: 16px;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .portal-content {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Alert Styles */
+        .alert {
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 5px;
+            text-align: center;
+        }
+
+        .alert-success {
+            background: #d1fae5;
+            color: #065f46;
+            border: 1px solid #a7f3d0;
+        }
+
+        .alert-info {
+            background: #dbeafe;
+            color: #1e40af;
+            border: 1px solid #93c5fd;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo-section">
+                    <div class="logo">ED</div>
+                    <div class="company-info">
+                        <h1>Erase Debt SA</h1>
+                        <p class="tagline">Your Past Debt Cleared, Creating A Better Future</p>
+                    </div>
+                </div>
+                <div class="contact-info">
+                    <p><strong>📞 031 500 2220 | 031 109 5560</strong></p>
+                    <p>✉️ queries@erasedebtsa.co.za</p>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Navigation -->
+    <nav>
+        <div class="container">
+            <div class="nav-links">
+                <a href="#home">Home</a>
+                <a href="#services">Services</a>
+                <a href="#portal">Client Portal</a>
+                <a href="#contact">Contact</a>
+                <a href="#about">About</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="container">
+            <h2>Professional Debt Management Services</h2>
+            <p>Clear your past debt and create a better financial future with our comprehensive debt management solutions tailored for South African clients.</p>
+            <div class="cta-buttons">
+                <a href="#services" class="btn btn-primary">View Our Services</a>
+                <a href="#portal" class="btn btn-secondary">Client Portal</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="services">
+        <div class="container">
+            <div class="section-title">
+                <h2>Our Debt Management Services</h2>
+                <p>Professional solutions to clear your debt and restore your financial freedom</p>
+            </div>
+            <div class="services-grid">
+                <div class="service-card">
+                    <h3>Service 1 & 2: C/D3 DRR & D4 Exit</h3>
+                    <p>Comprehensive debt review removal and exit services to clear your credit profile.</p>
+                    <p class="price">From R6,037.50 - R9,487.50 + R1,955 admin fee</p>
+                    <p><strong>Payment Plans:</strong> 1-12 months available</p>
+                </div>
+                <div class="service-card">
+                    <h3>Service 3: D4 ITC Report</h3>
+                    <p>Detailed ITC credit report analysis and clearance services.</p>
+                    <p class="price">R3,900.00 + R1,955 admin fee</p>
+                    <p><strong>Payment Plans:</strong> 1-12 months available</p>
+                </div>
+                <div class="service-card">
+                    <h3>Service 4: NL/ITC Advice</h3>
+                    <p>Professional advice on notice listings and ITC matters.</p>
+                    <p class="price">R3,955.00 + R1,955 admin fee</p>
+                    <p><strong>Payment Plans:</strong> 1-12 months available</p>
+                </div>
+                <div class="service-card">
+                    <h3>Service 5: NL Clearance</h3>
+                    <p>Complete notice listing clearance from your credit profile.</p>
+                    <p class="price">R5,950.00 + R1,955 admin fee</p>
+                    <p><strong>Payment Plans:</strong> 1-12 months available</p>
+                </div>
+                <div class="service-card">
+                    <h3>Service 6: A Status DRR/A</h3>
+                    <p>A-status debt review removal and clearance services.</p>
+                    <p class="price">R6,980.00 - R9,980.00 + R1,955 admin fee</p>
+                    <p><strong>Payment Plans:</strong> 1-12 months available</p>
+                </div>
+                <div class="service-card">
+                    <h3>Service 7: Other RN Statuses</h3>
+                    <p>Specialized services for various RN status clearances.</p>
+                    <p class="price">R5,980.00 + R1,955 admin fee</p>
+                    <p><strong>Payment Plans:</strong> 1-12 months available</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Client Portal Section -->
+    <section id="portal" class="portal">
+        <div class="container">
+            <div class="portal-content">
+                <div class="portal-info">
+                    <h2>Client Portal Access</h2>
+                    <p>Manage your debt clearance journey with our secure client portal.</p>
+                    <ul>
+                        <li>View your payment schedule</li>
+                        <li>Track service progress</li>
+                        <li>Submit queries and documents</li>
+                        <li>Receive automated updates</li>
+                        <li>Access payment history</li>
+                        <li>Download certificates</li>
+                    </ul>
+                    <div class="alert alert-info">
+                        <strong>Note:</strong> This is a follow-up system for existing clients. Contact us directly for new applications.
+                    </div>
+                </div>
+                <div class="login-form">
+                    <h3>Client Login</h3>
+                    <form id="loginForm">
+                        <div class="form-group">
+                            <label for="idNumber">ID Number:</label>
+                            <input type="text" id="idNumber" name="idNumber" required maxlength="13" placeholder="Enter your 13-digit ID number">
+                        </div>
+                        <div class="form-group">
+                            <label for="serviceType">Service Type:</label>
+                            <select id="serviceType" name="serviceType" required style="width: 100%; padding: 12px; border: 1px solid #d1d5db; border-radius: 5px; font-size: 16px;">
+                                <option value="">Select your service</option>
+                                <option value="service1">Service 1 & 2: C/D3 DRR & D4 Exit</option>
+                                <option value="service3">Service 3: D4 ITC Report</option>
+                                <option value="service4">Service 4: NL/ITC Advice</option>
+                                <option value="service5">Service 5: NL Clearance</option>
+                                <option value="service6">Service 6: A Status DRR/A</option>
+                                <option value="service7">Service 7: Other RN Statuses</option>
+                            </select>
+                        </div>
+                        <button type="submit" class="btn btn-primary" style="width: 100%;">Access Portal</button>
+                    </form>
+                    <div id="loginMessage" style="margin-top: 15px;"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <div class="section-title">
+                <h2>Contact Information</h2>
+                <p>Get in touch with our professional debt management team</p>
+            </div>
+            <div class="contact-grid">
+                <div class="contact-item">
+                    <h3>📞 Phone Support</h3>
+                    <p><strong>031 500 2220</strong></p>
+                    <p><strong>031 109 5560</strong></p>
+                    <p>Monday - Friday: 8:00 AM - 5:00 PM</p>
+                </div>
+                <div class="contact-item">
+                    <h3>✉️ Email Support</h3>
+                    <p><strong>queries@erasedebtsa.co.za</strong></p>
+                    <p>Response within 24 hours</p>
+                    <p>Professional consultation available</p>
+                </div>
+                <div class="contact-item">
+                    <h3>🏢 Professional Service</h3>
+                    <p>Licensed debt management</p>
+                    <p>Registered with authorities</p>
+                    <p>Comprehensive audit trails</p>
+                </div>
+                <div class="contact-item">
+                    <h3>⏰ Service Hours</h3>
+                    <p>Monday - Friday: 8:00 AM - 5:00 PM</p>
+                    <p>Saturday: 9:00 AM - 1:00 PM</p>
+                    <p>Emergency support available</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Erase Debt SA</h3>
+                    <p>Professional debt management services helping South Africans achieve financial freedom.</p>
+                    <p><strong>Your Past Debt Cleared, Creating A Better Future</strong></p>
+                </div>
+                <div class="footer-section">
+                    <h3>Services</h3>
+                    <ul>
+                        <li><a href="#services">Debt Review Removal</a></li>
+                        <li><a href="#services">ITC Report Services</a></li>
+                        <li><a href="#services">Notice Listing Clearance</a></li>
+                        <li><a href="#services">Credit Profile Management</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Contact</h3>
+                    <ul>
+                        <li>📞 031 500 2220</li>
+                        <li>📞 031 109 5560</li>
+                        <li>✉️ queries@erasedebtsa.co.za</li>
+                        <li>🌐 www.erasedebtsa.net</li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Client Portal</h3>
+                    <ul>
+                        <li><a href="#portal">Login Portal</a></li>
+                        <li><a href="#portal">Payment Tracking</a></li>
+                        <li><a href="#portal">Service Progress</a></li>
+                        <li><a href="#portal">Document Center</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Erase Debt SA. All rights reserved. | Professional debt management services | Licensed and regulated</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Simple login form handling
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const idNumber = document.getElementById('idNumber').value;
+            const serviceType = document.getElementById('serviceType').value;
+            const messageDiv = document.getElementById('loginMessage');
+            
+            if (idNumber.length !== 13) {
+                messageDiv.innerHTML = '<div class="alert" style="background: #fee2e2; color: #dc2626; border: 1px solid #fecaca;">Please enter a valid 13-digit ID number.</div>';
+                return;
+            }
+            
+            if (!serviceType) {
+                messageDiv.innerHTML = '<div class="alert" style="background: #fee2e2; color: #dc2626; border: 1px solid #fecaca;">Please select your service type.</div>';
+                return;
+            }
+            
+            messageDiv.innerHTML = '<div class="alert alert-info">Processing login... Please contact us at <strong>031 500 2220</strong> or <strong>queries@erasedebtsa.co.za</strong> for portal access.</div>';
+        });
+        
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+        
+        // Form validation for ID number
+        document.getElementById('idNumber').addEventListener('input', function(e) {
+            this.value = this.value.replace(/\D/g, '');
+        });
+    </script>
+</body>
+</html>
