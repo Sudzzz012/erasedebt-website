@@ -1,9 +1,7 @@
 {
-  "version": 2,
-  "routes": [
-    {
-      "src": "/(.*)",
-      "dest": "client/index.html"
-    }
-  ]
+  "src": "/(.*)",
+  "dest": "/index.html",
+  "headers": {
+    "Cache-Control": "no-cache, no-store, must-revalidate"
+  }
 }
