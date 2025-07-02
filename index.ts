@@ -1,0 +1,417 @@
+import express from 'express';
+import helmet from 'helmet';
+import cors from 'cors';
+import path from 'path';
+import { setupAuth } from './auth';
+import { setupBasicAuth } from './basicAuth';
+import { setupDomainVerification } from './domain-verification';
+import emailRoutes from './routes/emailRoutes';
+import extendedEmailRoutes from './routes/extendedEmailRoutes';
+import paymentRoutes from './routes/paymentRoutes';
+import adminEmailRoutes from './routes/administrativeEmailRoutes';
+import testEmailRoutes from './routes/testEmail';
+import testEmailRoute from './routes/testEmailRoute';
+import directServiceEmailRoute from './routes/directServiceEmailRoute';
+// Initialize the email scheduler service
+import './services/emailSchedulerStarter';
+
+// Google Sheets service is initialized in routes
+// We'll use the client-side service for lookups
+
+const app = express();
+
+// Basic security middleware with CSP configured for development
+app.use(helmet({
+  contentSecurityPolicy: {
+    directives: {
+      defaultSrc: ["'self'"],
+      scriptSrc: ["'self'", "'unsafe-inline'", "'unsafe-eval'"],
+      styleSrc: ["'self'", "'unsafe-inline'"],
+      imgSrc: ["'self'", "data:", "https:"],
+      connectSrc: ["'self'", "ws:", "wss:"],
+      fontSrc: ["'self'", "https:", "data:"],
+      objectSrc: ["'none'"],
+      mediaSrc: ["'self'"],
+      frameSrc: ["'self'"],
+    },
+  },
+  crossOriginEmbedderPolicy: false
+}));
+app.use(cors());
+app.use(express.json());
+
+// Set up authentication
+setupAuth(app);
+setupBasicAuth(app);
+
+// Set up domain verification
+setupDomainVerification(app);
+
+// Document download routes - MUST be before Vite middleware
+app.get('/download/word', (req, res) => {
+  const filePath = path.join(process.cwd(), 'ERASE_DEBT_SA_COMPLETE_SPECIFICATION.rtf');
+  res.download(filePath, 'Erase_Debt_SA_Complete_Specification.rtf', (err) => {
+    if (err) {
+      console.error('Download error:', err);
+      res.status(404).send('File not found');
+    }
+  });
+});
+
+app.get('/download/markdown', (req, res) => {
+  const filePath = path.join(process.cwd(), 'FINAL_COMPLETE_SYSTEM_SPECIFICATION.md');
+  res.download(filePath, 'Erase_Debt_SA_Complete_Specification.md', (err) => {
+    if (err) {
+      console.error('Download error:', err);
+      res.status(404).send('File not found');
+    }
+  });
+});
+
+app.get('/download/html', (req, res) => {
+  const filePath = path.join(process.cwd(), 'ERASE_DEBT_SA_COMPLETE_SPECIFICATION.html');
+  res.download(filePath, 'Erase_Debt_SA_Complete_Specification.html', (err) => {
+    if (err) {
+      console.error('Download error:', err);
+      res.status(404).send('File not found');
+    }
+  });
+});
+
+// Mobile download page
+app.get('/downloads', (req, res) => {
+  const filePath = path.join(process.cwd(), 'download-page.html');
+  res.sendFile(filePath);
+});
+
+// Staff creation API endpoint - MUST be before Vite middleware
+app.post('/api/staff/create', async (req, res) => {
+  try {
+    console.log('Staff creation request received:', req.body);
+    
+    const { name, email, role, idNumber } = req.body;
+
+    if (!name || !email || !role || !idNumber) {
+      console.log('Missing required fields:', { name, email, role, idNumber });
+      return res.status(400).json({ 
+        success: false, 
+        message: 'Missing required fields: name, email, role, idNumber' 
+      });
+    }
+
+    // Import database utilities
+    const { db } = await import('./db');
+    const { users } = await import('@shared/schema');
+    const { eq } = await import('drizzle-orm');
+    
+    // Generate temporary password
+    const tempPassword = idNumber;
+    console.log('Generated temp password:', tempPassword);
+
+    // Check for existing user
+    const existingUser = await db.select().from(users).where(eq(users.username, idNumber));
+    if (existingUser.length > 0) {
+      console.log('User already exists:', existingUser[0]);
+      return res.status(400).json({
+        success: false,
+        message: 'A staff member with this ID number already exists'
+      });
+    }
+
+    // Create staff user in database
+    console.log('Creating new staff user...');
+    const [newUser] = await db
+      .insert(users)
+      .values({
+        username: idNumber,
+        password: tempPassword,
+        name,
+        email,
+        role,
+        status: 'active',
+        createdAt: new Date(),
+        updatedAt: new Date()
+      })
+      .returning();
+    
+    console.log('Staff user created:', newUser);
+
+    // Send welcome email
+    try {
+      console.log('Attempting to send welcome email...');
+      const { sendStaffWelcomeEmail } = await import('./staffEmailService');
+      const emailSent = await sendStaffWelcomeEmail({
+        name,
+        email,
+        idNumber,
+        tempPassword,
+        role,
+        hostUrl: 'erasedebtsa.net'
+      });
+      console.log('Email sent result:', emailSent);
+
+      res.json({
+        success: true,
+        message: 'Staff member created successfully and email sent',
+        emailSent,
+        user: {
+          id: newUser.id,
+          name: newUser.name,
+          email: newUser.email,
+          idNumber: newUser.username,
+          role: newUser.role,
+          tempPassword: tempPassword
+        }
+      });
+    } catch (emailError) {
+      console.error('Failed to send welcome email:', emailError);
+      res.json({
+        success: true,
+        message: 'Staff member created successfully but email failed to send',
+        emailSent: false,
+        user: {
+          id: newUser.id,
+          name: newUser.name,
+          email: newUser.email,
+          idNumber: newUser.username,
+          role: newUser.role,
+          tempPassword: tempPassword
+        }
+      });
+    }
+
+  } catch (error) {
+    console.error('Database staff creation error:', error);
+    res.status(500).json({
+      success: false,
+      message: 'Failed to create staff member',
+      error: error.message || 'Unknown error'
+    });
+  }
+});
+
+// Get all staff users endpoint - MUST be before Vite middleware
+app.get('/api/staff/users', async (req, res) => {
+  try {
+    const { db } = await import('./db');
+    const { users } = await import('@shared/schema');
+    const { desc } = await import('drizzle-orm');
+    
+    const staffUsers = await db
+      .select({
+        id: users.id,
+        username: users.username,
+        name: users.name,
+        email: users.email,
+        role: users.role,
+        status: users.status,
+        createdAt: users.createdAt,
+        lastLogin: users.lastLogin
+      })
+      .from(users)
+      .orderBy(desc(users.createdAt));
+    
+    res.json({
+      success: true,
+      users: staffUsers
+    });
+  } catch (error) {
+    console.error('Get staff users error:', error);
+    res.status(500).json({
+      success: false,
+      message: 'Failed to get staff users'
+    });
+  }
+});
+
+// Register the email routes
+app.use('/api/email', emailRoutes);
+
+// Register extended email routes for additional email templates
+app.use('/api/extended-email', extendedEmailRoutes);
+
+// Register payment routes that integrate with email notifications
+app.use('/api/payment', paymentRoutes);
+
+// Register test email route
+app.use(testEmailRoute);
+
+// Register direct service email route
+app.use(directServiceEmailRoute);
+
+// Register administrative email routes (admin only)
+app.use('/api/admin/email', adminEmailRoutes);
+
+// Register Google Sheets integration routes
+import googleSheetsRoutes from './routes/googleSheetsRoutes';
+app.use(googleSheetsRoutes);
+
+// Register enhanced client query routes with database integration
+import enhancedClientQueries from './routes/enhancedClientQueries';
+app.use('/api/client-queries', enhancedClientQueries);
+
+// Register service routes
+import serviceRoutes from './routes/serviceRoutes';
+app.use('/api/services', serviceRoutes);
+
+// Register Credit Challenge routes
+import creditChallengeRoutes from './routes/creditChallengeRoutes';
+app.use('/api/credit-challenge', creditChallengeRoutes);
+
+// Register Mini-Games routes
+import miniGamesRoutes from './routes/miniGamesRoutes';
+app.use('/api/mini-games', miniGamesRoutes);
+
+// Register Google Sheets proxy route to avoid CORS issues
+import sheetsProxyRoute from './routes/sheetsProxyRoute';
+app.use(sheetsProxyRoute);
+
+// Register client lookup route
+import clientLookupRoute from './routes/clientLookupRoute.js';
+app.use(clientLookupRoute);
+
+// Register client query route
+import clientQueryRoute from './routes/clientQueryRoute.js';
+app.use(clientQueryRoute);
+
+// Admin email routes already registered above
+
+// Register automated email routes for lifecycle emails
+import automatedEmailRoutes from './routes/automatedEmailRoutes.js';
+app.use(automatedEmailRoutes);
+
+// Register staff dashboard routes with authentication
+import staffRoutes from './routes/staffRoutes';
+app.use('/api/staff', staffRoutes);
+
+// Register client portal routes
+import productionClientPortal from './routes/productionClientPortal';
+app.use('/api/client', productionClientPortal);
+
+// Register client authentication routes
+import clientAuthRoutes from './routes/clientAuthRoutes';
+app.use('/api/client-auth', clientAuthRoutes);
+
+// Register Excel import routes
+import excelImportRoutes from './routes/excelImportRoutes';
+app.use('/api/excel', excelImportRoutes);
+
+// Register email test routes
+import emailTestRoutes from './routes/emailTestRoutes';
+app.use('/api/email-test', emailTestRoutes);
+
+// Register client query routes
+import clientQueryRoutes from './routes/clientQueryRoutes';
+app.use('/api/queries', clientQueryRoutes);
+
+// Health check endpoint
+app.get('/health', (req, res) => {
+  res.json({ status: 'ok', timestamp: new Date().toISOString() });
+});
+
+// Staff welcome email route
+app.post('/api/send-staff-welcome-email', async (req, res) => {
+  try {
+    const { name, email, idNumber, tempPassword, role } = req.body;
+
+    if (!name || !email || !idNumber || !tempPassword || !role) {
+      return res.status(400).json({ 
+        success: false, 
+        message: "Missing required fields" 
+      });
+    }
+
+    const { sendStaffWelcomeEmail } = await import('./staffEmailService');
+    
+    const success = await sendStaffWelcomeEmail({
+      name,
+      email,
+      idNumber,
+      tempPassword,
+      role,
+      hostUrl: req.get('host') || 'erasedebtsa.replit.app'
+    });
+
+    if (success) {
+      res.json({ 
+        success: true, 
+        message: "Welcome email sent successfully to " + email,
+        emailStatus: "sent"
+      });
+    } else {
+      res.json({ 
+        success: false, 
+        message: "Email failed to send - please share credentials manually",
+        emailStatus: "failed"
+      });
+    }
+
+  } catch (error: any) {
+    console.error("Staff email service error:", error);
+    
+    res.json({ 
+      success: false, 
+      message: "Email service error - staff created successfully",
+      error: error.message
+    });
+  }
+});
+
+// Simple test route for email
+app.post('/api/send-test-email', async (req, res) => {
+  const { email } = req.body || {};
+  const recipient = email || 'sudeer.joseph1@gmail.com';
+  
+  try {
+    // Import the email service
+    const { sendTestEmail } = await import('./services/emailService');
+    
+    const success = await sendTestEmail(recipient);
+    
+    if (success) {
+      return res.status(200).json({ 
+        success: true, 
+        message: `Test email sent successfully to ${recipient}` 
+      });
+    } else {
+      return res.status(500).json({ 
+        success: false, 
+        message: 'Failed to send test email. Check server logs for details.' 
+      });
+    }
+  } catch (error) {
+    console.error('Error sending test email:', error);
+    return res.status(500).json({ 
+      success: false, 
+      message: 'Error sending test email', 
+      error: error instanceof Error ? error.message : String(error)
+    });
+  }
+});
+
+
+
+// Start automatic Google Sheets sync timer
+console.log('Starting automatic Google Sheets sync timer');
+
+// Set up static file serving and Vite in development
+const PORT = process.env.PORT || 5000;
+
+if (process.env.NODE_ENV === 'development') {
+  const { setupVite } = await import('./vite');
+  // Start the server first
+  const server = app.listen(PORT, '0.0.0.0', () => {
+    console.log(`Server running on port ${PORT}`);
+  });
+  // Then setup Vite with the server instance
+  setupVite(app, server);
+} else {
+  // Serve static files in production
+  app.use(express.static('dist'));
+  // Start the server
+  app.listen(PORT, '0.0.0.0', () => {
+    console.log(`Server running on port ${PORT}`);
+  });
+}
+
+export default app;
