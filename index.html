@@ -3,244 +3,69 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Login - Erase Debt SA</title>
+    <title>Erase Debt SA - Client Support</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #00668c, #2c3e50);
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #2680b3 0%, #3d4f58 100%);
             min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 2rem;
+            color: white;
         }
-
-        .login-container {
-            background: white;
-            padding: 3rem;
-            border-radius: 20px;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
-            width: 100%;
-            max-width: 400px;
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
             text-align: center;
+            padding-top: 100px;
         }
-
-        .logo {
-            margin-bottom: 2rem;
-        }
-
-        .logo img {
-            height: 60px;
-            max-width: 250px;
-        }
-
         h1 {
-            color: #00668c;
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+        p {
+            font-size: 1.2rem;
             margin-bottom: 2rem;
-            font-size: 1.8rem;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
         }
-
-        .form-group {
-            margin-bottom: 1.5rem;
-            text-align: left;
+        .buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
         }
-
-        label {
-            display: block;
-            margin-bottom: 0.5rem;
-            color: #333;
-            font-weight: bold;
-        }
-
-        input {
-            width: 100%;
-            padding: 1rem;
-            border: 2px solid #ddd;
-            border-radius: 8px;
-            font-size: 1rem;
-            transition: border-color 0.3s;
-        }
-
-        input:focus {
-            outline: none;
-            border-color: #00668c;
-        }
-
-        .login-btn {
-            width: 100%;
-            background: linear-gradient(135deg, #00668c, #2c3e50);
-            color: white;
-            padding: 1rem;
+        .btn {
+            padding: 12px 24px;
             border: none;
-            border-radius: 8px;
-            font-size: 1.1rem;
-            font-weight: bold;
+            border-radius: 5px;
+            font-size: 1rem;
             cursor: pointer;
-            transition: all 0.3s;
-            margin-top: 1rem;
-        }
-
-        .login-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 15px rgba(0, 102, 140, 0.3);
-        }
-
-        .back-link {
-            margin-top: 2rem;
-            display: block;
-            color: #666;
             text-decoration: none;
-            transition: color 0.3s;
+            display: inline-block;
         }
-
-        .back-link:hover {
-            color: #00668c;
+        .btn-primary {
+            background: white;
+            color: #2680b3;
         }
-
-        .notification {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            padding: 1rem 1.5rem;
-            border-radius: 8px;
+        .btn-secondary {
+            background: #3d4f58;
             color: white;
-            font-weight: bold;
-            z-index: 1000;
-            display: none;
-        }
-
-        .notification.success { background: #4CAF50; }
-        .notification.error { background: #f44336; }
-        .notification.warning { background: #ff9800; }
-
-        @media (max-width: 480px) {
-            .login-container {
-                padding: 2rem 1.5rem;
-            }
-            
-            .logo img {
-                height: 45px;
-                max-width: 200px;
-            }
-            
-            h1 {
-                font-size: 1.5rem;
-            }
+            border: 2px solid white;
         }
     </style>
 </head>
 <body>
-    <div class="login-container">
-        <div class="logo">
-            <img src="../attached_assets/IMG_5019.png" alt="Erase Debt SA">
+    <div class="container">
+        <h1>Erase Debt SA Client Support</h1>
+        <p>Application tracking made simple. Get administrative support and track the progress of your application through our dedicated client support platform.</p>
+        <div class="buttons">
+            <a href="#" class="btn btn-primary">Submit a Query</a>
+            <a href="#" class="btn btn-secondary">Track Your Query</a>
+            <a href="#" class="btn btn-secondary">Contact Us</a>
         </div>
-        
-        <h1>🔐 Admin Login</h1>
-        
-        <form id="loginForm">
-            <div class="form-group">
-                <label for="username">👤 Username</label>
-                <input type="text" id="username" name="username" required placeholder="Enter your username">
-            </div>
-            
-            <div class="form-group">
-                <label for="password">🔒 Password</label>
-                <input type="password" id="password" name="password" required placeholder="Enter your password">
-            </div>
-            
-            <button type="submit" class="login-btn">
-                🚀 Login to Dashboard
-            </button>
-        </form>
-        
-        <a href="../index.html" class="back-link">← Back to Main Website</a>
     </div>
-
-    <div id="notification" class="notification"></div>
-
-    <script>
-        // Google Apps Script URL
-        const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyWnIg60EKMsVQr2nnDJF5sd92Ki4p9ga5nZTZGTKqhxlLw7XHj2ptjOfBN4vzAkz5N4g/exec';
-
-        // Handle login form submission
-        document.getElementById('loginForm').addEventListener('submit', async function(e) {
-            e.preventDefault();
-            
-            const username = document.getElementById('username').value.trim();
-            const password = document.getElementById('password').value;
-            
-            if (!username || !password) {
-                showNotification('Please enter both username and password', 'warning');
-                return;
-            }
-            
-            try {
-                showNotification('Authenticating...', 'warning');
-                
-                const response = await fetch(GOOGLE_SCRIPT_URL, {
-                    method: 'POST',
-                    body: JSON.stringify({
-                        action: 'authenticateUser',
-                        username: username,
-                        password: password
-                    })
-                });
-                
-                const result = await response.json();
-                
-                if (result.success && result.user) {
-                    showNotification('Login successful! Redirecting...', 'success');
-                    
-                    // Store user session
-                    sessionStorage.setItem('adminUser', JSON.stringify(result.user));
-                    sessionStorage.setItem('loginTime', Date.now().toString());
-                    
-                    // Redirect to dashboard
-                    setTimeout(() => {
-                        window.location.href = 'dashboard.html';
-                    }, 1500);
-                } else {
-                    showNotification(result.message || 'Invalid username or password', 'error');
-                }
-            } catch (error) {
-                console.error('Login error:', error);
-                showNotification('Login failed. Please try again.', 'error');
-            }
-        });
-
-        // Show notification function
-        function showNotification(message, type = 'success') {
-            const notification = document.getElementById('notification');
-            notification.textContent = message;
-            notification.className = `notification ${type}`;
-            notification.style.display = 'block';
-            
-            setTimeout(() => {
-                notification.style.display = 'none';
-            }, 5000);
-        }
-
-        // Check if already logged in
-        document.addEventListener('DOMContentLoaded', function() {
-            const adminUser = sessionStorage.getItem('adminUser');
-            const loginTime = sessionStorage.getItem('loginTime');
-            
-            if (adminUser && loginTime) {
-                const timeDiff = Date.now() - parseInt(loginTime);
-                const hoursDiff = timeDiff / (1000 * 60 * 60);
-                
-                // If logged in within last 8 hours, redirect to dashboard
-                if (hoursDiff < 8) {
-                    window.location.href = 'dashboard.html';
-                }
-            }
-        });
-    </script>
 </body>
 </html>
